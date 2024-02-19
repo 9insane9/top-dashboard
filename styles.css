@@ -1,0 +1,169 @@
+html {
+    padding: 0;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template: 18% 1fr / 20% 1fr;
+    grid-template-areas: 
+    "sidebar top"
+    "sidebar content-area"; 
+}
+
+/* TOP AREA */
+.top {
+    grid-area: top;
+    padding-right: 50px;
+    display: grid;
+    grid-template: 40% 60% / 65% 35%;
+    grid-template-areas: 
+    "search dock"
+    "welcome buttons";
+}
+
+input {
+    margin: 20px 20px 10px 75px;
+    border: none;
+    border-radius: 40px;
+    background-color: rgb(233, 233, 233);
+    padding-left: 30px;
+    font-size: 1.2rem;
+}
+
+.welcome {
+    display: grid;
+    align-content: center;
+    margin-left: 150px;
+}
+
+.buttons {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: center;
+    justify-items: center;
+}
+
+.buttons button {
+    border: none;
+    border-radius: 40px;
+    background-color: #065f46;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    padding: 10px 25px;
+}
+/* SIDEBAR */
+.sidebar {
+    grid-area: sidebar;
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: repeat(auto-fit, 60px);
+    background-color: #065f46;
+}
+
+.sidebar a {
+    display: grid;
+    align-items: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    padding-left: 80px;
+}
+
+.sidebar a:first-child {
+    font-size: 1.8rem;
+}
+
+.sidebar a:hover {
+    background-color: #059669;
+}
+
+/*sidebar icons*/
+/* .sidebar a:nth-child(1)::before {
+    transform: scale(20%);
+    display: inline-block;
+    content: url(./icons/view-dashboard.svg);
+    filter: invert();
+} */
+
+/*CONTENT-AREA*/
+.content-area {
+    grid-area: content-area;
+    display: grid;
+    grid-template: 1fr 60% / 75% 25%;
+    grid-template-areas: 
+    "projects announcements"
+    "projects trending";
+
+    background-color: #bae6fd;
+    padding: 0 30px 30px 0;
+}
+/*PROJECTS*/
+.projects {
+    grid-area: projects;
+    margin: 0 20px;
+}
+
+.projects-grid { /*grid problem here*/
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.project {
+    background-color: azure;
+    border-left: 5px solid goldenrod;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px grey;
+    padding: 15px;
+    height: minmax(250px, 1fr);
+}
+/*ANNOUNCEMENTS*/
+.announcements {
+    grid-area: announcements;    
+}
+
+.announcements-grid {
+    display: grid;
+    grid-auto-flow: row;
+    grid-template-rows: repeat(auto-fit, minmax(80px, 1fr));
+
+    background-color: azure;
+    border-radius: 10px;
+}
+
+.announcement {
+    margin: 0 15px;
+}
+
+.announcement h4 {
+    margin-bottom: -15px;
+}
+
+.announcement:not(:last-child) {
+    border-bottom: 1px solid rgb(168, 58, 58);
+}
+/*TRENDING*/
+.trending {
+    grid-area: trending;
+}
+
+.trending-grid {
+    display: grid;
+
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.trending-item {
+    margin-left: 100px;
+}
