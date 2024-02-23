@@ -1,4 +1,4 @@
-html {
+body {
     padding: 0;
     margin: 0;
 }
@@ -8,46 +8,110 @@ html {
 }
 
 .container {
-    margin: 0;
-    padding: 0;
     display: grid;
-    grid-template: 18% 1fr / 20% 1fr;
+    height: 100%;
+    grid-template-rows: minmax(25% 300px) 1fr;
+    grid-template-columns: clamp(250px, 18%, 400px) 1fr;
     grid-template-areas: 
     "sidebar top"
     "sidebar content-area"; 
 }
 
+.content-area h1 {
+    color: azure;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
 /* TOP AREA */
 .top {
+    color: white;
+    background-color: #232D3F;
     grid-area: top;
     padding-right: 50px;
     display: grid;
-    grid-template: 40% 60% / 65% 35%;
+    align-items: center;
+    grid-template-columns: 65% 35%;
+    grid-template-rows: minmax(40%, 120px) minmax(60%, 120px);
     grid-template-areas: 
     "search dock"
     "welcome buttons";
+
+    z-index: 99;
+    box-shadow: 0px 2px 5px #03af79;
 }
 
 input {
-    margin: 20px 20px 10px 75px;
+    margin: 0 20px 0 75px;
     border: none;
     border-radius: 40px;
+    height: 50px;
+    width: 60%;
     background-color: rgb(233, 233, 233);
     padding-left: 30px;
     font-size: 1.2rem;
 }
 
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar > img {
+    filter: invert();
+    height: 50px;
+    width: auto;
+    margin-right: -70px;
+}
+
+.dock {
+    display: flex;
+    flex-wrap: nowrap;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    align-items: center;
+    gap: 20px;
+}
+
+.dock img {
+    content: url("https://i.pinimg.com/564x/38/57/3d/38573d8fcc3829a0ede4fde3e13ffbc1.jpg");
+}
+
+.dock .notif {
+    content: url(./icons/bell-badge.svg);
+    height: 30px;
+    width: auto;
+    filter: invert();
+}
+
 .welcome {
-    display: grid;
+    display: flex;
     align-content: center;
-    margin-left: 150px;
+    margin-left: 60px;
+}
+
+.welcome div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 25px;
+
+}
+
+
+.welcome img {
+    object-fit: cover;
+    border-radius: 50%;
+    height: 120px;
+    width: 120px;
 }
 
 .buttons {
-    display: grid;
-    grid-auto-flow: column;
+    display: flex;
     align-items: center;
     justify-items: center;
+    gap: 15px;
+    padding-right: 50px;
 }
 
 .buttons button {
@@ -59,72 +123,111 @@ input {
     font-weight: bolder;
     padding: 10px 25px;
 }
+
+.buttons button:hover {
+    background-color: #03af79;
+    cursor: pointer;
+}
 /* SIDEBAR */
 .sidebar {
     grid-area: sidebar;
     display: grid;
     grid-auto-flow: row;
-    grid-template-rows: repeat(auto-fit, 60px);
+    /* grid-template-rows: repeat(auto-fit, 60px); */
+    grid-template-rows: 100px 30px repeat(6, 60px) 40px repeat(3, 60px);
     background-color: #065f46;
 }
 
 .sidebar a {
-    display: grid;
+    display: flex;
     align-items: center;
     color: white;
     font-size: 1.5rem;
     font-weight: bold;
     text-decoration: none;
-    padding-left: 80px;
+    padding-left: 40px;
 }
 
-.sidebar a:first-child {
-    font-size: 1.8rem;
+.sidebar > a > img {
+    display: inline-block;
+    width: 30px;
+    height: auto;
+    margin-right: 15px;
+    filter: invert();
 }
 
 .sidebar a:hover {
     background-color: #059669;
 }
 
-/*sidebar icons*/
-/* .sidebar a:nth-child(1)::before {
-    transform: scale(20%);
-    display: inline-block;
-    content: url(./icons/view-dashboard.svg);
-    filter: invert();
-} */
+#dashboard {
+    font-size: 1.8rem;
+}
 
 /*CONTENT-AREA*/
 .content-area {
     grid-area: content-area;
     display: grid;
-    grid-template: 1fr 60% / 75% 25%;
+    grid-template-rows: 360px 1fr;
+    grid-template-columns: 75% 25%;
     grid-template-areas: 
     "projects announcements"
     "projects trending";
 
-    background-color: #bae6fd;
+    background-color: #232D3F;
     padding: 0 30px 30px 0;
 }
 /*PROJECTS*/
 .projects {
     grid-area: projects;
+    position: relative;
     margin: 0 20px;
 }
 
-.projects-grid { /*grid problem here*/
+.projects-grid { /*grid problem here>*/
     display: grid;
     gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .project {
-    background-color: azure;
-    border-left: 5px solid goldenrod;
+    position: relative;
+    background-color: #245c5c;
+    color: azure;
+    border-left: 5px solid hsl(172, 100%, 40%);
     border-radius: 10px;
-    box-shadow: 2px 2px 2px grey;
+    box-shadow: 3px 3px 2px #008170;
     padding: 15px;
-    height: minmax(250px, 1fr);
+    height: 260px;
+}
+
+.project span {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.project .icon {
+    height: 30px;
+    width: auto;
+    margin-right: 5px;
+    filter: invert();
+}
+
+.project .favorite {
+    content: url(./icons/star-plus-outline.svg);
+}
+
+.project .follow {
+    content: url(./icons/eye-plus-outline.svg);
+}
+
+.project .share {
+    content: url(./icons/share.svg);
+}
+
+.project a:hover {
+    filter: invert();
 }
 /*ANNOUNCEMENTS*/
 .announcements {
@@ -134,14 +237,26 @@ input {
 .announcements-grid {
     display: grid;
     grid-auto-flow: row;
-    grid-template-rows: repeat(auto-fit, minmax(80px, 1fr));
+    grid-template-rows: repeat(3, clamp(60px, 95px, 130px));
 
-    background-color: azure;
+    background-color: #245c5c;
     border-radius: 10px;
 }
 
 .announcement {
-    margin: 0 15px;
+    color: azure;
+    display: grid;
+    margin: 0px 15px;
+}
+
+.announcement p {
+    overflow: hidden;
+}
+
+.announcement span {
+    display: inline-block;
+    margin-top: -20px;
+    color: gray;
 }
 
 .announcement h4 {
@@ -149,21 +264,47 @@ input {
 }
 
 .announcement:not(:last-child) {
-    border-bottom: 1px solid rgb(168, 58, 58);
+    border-bottom: 1px solid rgb(68, 233, 205);
 }
+
 /*TRENDING*/
 .trending {
     grid-area: trending;
 }
 
 .trending-grid {
+    background-color: #245c5c;
     display: grid;
-
-    background-color: rgb(255, 255, 255);
     border-radius: 10px;
     padding: 15px;
 }
 
 .trending-item {
-    margin-left: 100px;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-left: 15px;
+}
+
+.trending-item a {
+    text-decoration: none;
+    color: azure;
+}
+
+.trending-item img, .dock-img  {
+    object-fit: cover;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+}
+
+.trending-item-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+}
+
+.trending-item-wrapper p {
+    color: hsl(180, 100%, 75%);
+    margin-top: 5px;
 }
