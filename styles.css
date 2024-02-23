@@ -186,8 +186,11 @@ input {
 
 .projects-grid { /*grid problem here>*/
     display: grid;
+    height: 90%;
     gap: 20px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); */
+    /* grid-template-rows: repeat(auto-fit, 1fr); */
 }
 
 .project {
@@ -198,7 +201,8 @@ input {
     border-radius: 10px;
     box-shadow: 3px 3px 2px #008170;
     padding: 15px;
-    height: 260px;
+    /* height: clamp(260px, 50%, 1fr); */
+    /* height: 260px; */
 }
 
 .project span {
@@ -214,6 +218,10 @@ input {
     filter: invert();
 }
 
+.project .icon:hover {
+    filter: invert();
+}
+
 .project .favorite {
     content: url(./icons/star-plus-outline.svg);
 }
@@ -226,9 +234,6 @@ input {
     content: url(./icons/share.svg);
 }
 
-.project a:hover {
-    filter: invert();
-}
 /*ANNOUNCEMENTS*/
 .announcements {
     grid-area: announcements;    
